@@ -9,15 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#FFFFFF"
     tools:context="com.example.edbest.samuelmorse.MainActivity">
-
     <TextView
-        android:id="@+id/theletter"
-        android:text=""
-        android:textSize="120dp"
-        android:textColor="#777777"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+            android:id="@+id/theletter"
+            android:text="A"
+            android:textSize="120dp"
+            android:textColor="#777777"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp" />
+
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"

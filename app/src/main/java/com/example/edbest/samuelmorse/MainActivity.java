@@ -1,5 +1,6 @@
 package com.example.edbest.samuelmorse;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -78,6 +79,26 @@ public class MainActivity extends AppCompatActivity {
         initTheWholeThing();
         goGetAMorseKey();
         aToneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 70);
+        ImageView anImageView = (ImageView)findViewById(R.id.telegraphid);
+        anImageView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                openImage();
+            }
+        });
+        TextView aTextView = (TextView)findViewById(R.id.theletter);
+        aTextView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                executeValidation(0);
+            }
+        });
+    }
+    private void openImage(){
+        Intent myIntent = new Intent(this, MorseImageActivity.class);
+        startActivity(myIntent);
     }
 
     public boolean onTouchEvent(MotionEvent aMotionEvent) {
@@ -172,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
+        /*
         if (aCountDownTimer == null) {
             aCountDownTimer = new CountDownTimer(TIMER_SECONDS, 1) {
 
@@ -187,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
             }.start();
         }
+        */
     }
 
     private String convertZeroWidthsToEmpties(int anInt){
