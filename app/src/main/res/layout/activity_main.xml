@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
+    tools:context="com.example.edbest.samuelmorse.MainActivity">
+
+    <TextView
+        android:id="@+id/theletter"
+        android:text=""
+        android:textSize="120dp"
+        android:textColor="#777777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/theletter">
+        <TableRow
+            android:id="@+id/tableRow2"
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/blip1"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+            <TextView
+                android:id="@+id/blank1"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blip2"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blank2"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blip3"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blank3"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blip4"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+            <TextView
+                android:id="@+id/blank4"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/blip5"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+
+        </TableRow>
+
+        </TableLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tableLayout1">
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/linespacer">
+
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                 android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+            <TextView
+                android:text="____"
+                android:height="20dp"/>
+        </TableRow>
+    </TableLayout>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tableLayout2">
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:id="@+id/correctionblip1"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+            <TextView
+                android:id="@+id/correctionblank1"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblip2"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblank2"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblip3"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblank3"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblip4"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+            <TextView
+                android:id="@+id/correctionblank4"
+                android:text=""
+                android:height="20dp"
+                android:width="20dp"/>
+
+            <TextView
+                android:id="@+id/correctionblip5"
+                android:text=""
+                android:background="#777777"
+                android:height="20dp"
+                android:width="20dp"/>
+        </TableRow>
+    </TableLayout>
+    <ImageView
+        android:id="@+id/telegraphid"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="A Telegraph"
+        android:src="@drawable/telegraph"
+        android:layout_above="@id/theletter"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"/>
+</RelativeLayout>
