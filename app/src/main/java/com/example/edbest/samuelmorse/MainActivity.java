@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private long upTime;
     private long theTimeDifference;
     private static long LONG_CLICK_LENGTH = 200;
-    private int firstSelection;
-    private int secondSelection;
-    private int thirdSelection;
+    private static String THE_KEY_NAME_IN_STATE ="MORSEKEY";
     private static int SHORT_WIDTH = 20;
     private static int LONG_WIDTH = 40;
     private static int SHORT_SOUND_LENGTH = 100;
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean readyForInput;
     private boolean timerIsRunning;
 
-
-    //private TableRow aTableRow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         aCorrectionTextView5 = (TextView) findViewById(R.id.correctionblip5);
         //aTableRow = (TableRow)findViewById(R.id.linespacer);
         initTheWholeThing();
-        goGetAMorseKey();
+
         aToneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 70);
         ImageView anImageView = (ImageView)findViewById(R.id.telegraphid);
         anImageView.setOnClickListener(new View.OnClickListener(){
@@ -88,14 +85,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         TextView aTextView = (TextView)findViewById(R.id.theletter);
-        aTextView.setOnClickListener(new View.OnClickListener(){
+        aTextView.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 executeValidation(0);
             }
         });
+        goGetAMorseKey(savedInstanceState);
     }
+
+
     private void openImage(){
         Intent myIntent = new Intent(this, MorseImageActivity.class);
         startActivity(myIntent);
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             //aTableRow.setVisibility(View.VISIBLE);
             Toast.makeText(getApplicationContext(), "It matches!  Good job.", Toast.LENGTH_SHORT).show();
             initTheWholeThing();
-            goGetAMorseKey();
+            goGetAMorseKey(null);
         } else {
             readyForInput = false;
             Toast.makeText(getApplicationContext(), "You suck eggs!  Why don't you quit trying?", Toast.LENGTH_SHORT).show();
@@ -271,10 +271,7 @@ public class MainActivity extends AppCompatActivity {
         initTheCorrections();
         downTime = 0;
         upTime = 0;
-        firstSelection = 0;
-        secondSelection = 0;
-        thirdSelection = 0;
-        //aTableRow.setVisibility(View.INVISIBLE);
+
     }
     private void initMyAnswers(){
         aTextView1.setWidth(0);
@@ -282,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
         aTextView3.setWidth(0);
         aTextView4.setWidth(0);
         aTextView5.setWidth(0);
+        aBlipCounter = 0;
         initTheCorrections();
     }
     private void initTheCorrections(){
@@ -291,15 +289,29 @@ public class MainActivity extends AppCompatActivity {
         aCorrectionTextView4.setWidth(0);
         aCorrectionTextView5.setWidth(0);
     }
-    private void goGetAMorseKey(){
-        List<Object> valuesList = new ArrayList<Object>(aHashmapOfMorse.keySet());
-        Collections.shuffle(valuesList);
-
-        for ( Object obj : valuesList ) {
-            aCurrentMorseKey =  obj.toString();
-        }
+    private void goGetAMorseKey(Bundle savedInstanceState){
         theLetterTextView = (TextView) findViewById(R.id.theletter);
-        theLetterTextView.setText(aCurrentMorseKey);
+        if (savedInstanceState != null) {
+            String aMorseKey = savedInstanceState.getString(THE_KEY_NAME_IN_STATE, "");
+            theLetterTextView.setText(aMorseKey);
+            aCurrentMorseKey = aMorseKey;
+        }
+        else {
+            List<Object> valuesList = new ArrayList<Object>(aHashmapOfMorse.keySet());
+            Collections.shuffle(valuesList);
+
+            for (Object obj : valuesList) {
+                aCurrentMorseKey = obj.toString();
+            }
+            theLetterTextView.setText(aCurrentMorseKey);
+        }
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        theLetterTextView = (TextView) findViewById(R.id.theletter);
+        outState.putString(THE_KEY_NAME_IN_STATE, theLetterTextView.getText().toString());
     }
 
     private void setMorseHashmap(){
