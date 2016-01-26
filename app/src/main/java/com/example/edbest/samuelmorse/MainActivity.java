@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer aCountDownTimer;
     private boolean readyForInput;
     private boolean timerIsRunning;
+    private int aRepeatCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 executeValidation(0);
             }
         });
+        aRepeatCounter = 10;
         goGetAMorseKey(savedInstanceState);
     }
 
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             readyForInput = false;
             Toast.makeText(getApplicationContext(), "You suck eggs!  Why don't you quit trying?", Toast.LENGTH_SHORT).show();
-            new CountDownTimer(5000, 1000) {
+            new CountDownTimer(2000, 1000) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -295,15 +297,17 @@ public class MainActivity extends AppCompatActivity {
             String aMorseKey = savedInstanceState.getString(THE_KEY_NAME_IN_STATE, "");
             theLetterTextView.setText(aMorseKey);
             aCurrentMorseKey = aMorseKey;
-        }
-        else {
-            List<Object> valuesList = new ArrayList<Object>(aHashmapOfMorse.keySet());
-            Collections.shuffle(valuesList);
-
-            for (Object obj : valuesList) {
-                aCurrentMorseKey = obj.toString();
+        } else {
+            if (aRepeatCounter > 2) {
+                List<Object> valuesList = new ArrayList<Object>(aHashmapOfMorse.keySet());
+                Collections.shuffle(valuesList);
+                for (Object obj : valuesList) {
+                    aCurrentMorseKey = obj.toString();
+                }
+                theLetterTextView.setText(aCurrentMorseKey);
+                aRepeatCounter = 0;
             }
-            theLetterTextView.setText(aCurrentMorseKey);
+            else { aRepeatCounter++; }
         }
     }
     @Override
